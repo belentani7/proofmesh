@@ -11,3 +11,9 @@
 - [x] Pruebas Vitest del motor, router API y casos de aprobación/rechazo 10/10.
 - [x] Verificación visual responsive del panel y landing.
 - [x] README, licencia MIT, CI y release inicial para GitHub.
+
+- [ ] Auditar críticamente la implementación publicada frente a los requisitos originales.
+- [ ] Verificar que la puntuación representa evidencia real y no heurísticas engañosas.
+- [ ] Verificar que el flujo de GitHub y la automatización solicitada existen realmente.
+- [ ] Corregir todos los fallos confirmados y añadir pruebas de regresión.
+- [ ] Revalidar la aplicación y publicar una corrección solo después de las pruebas.
