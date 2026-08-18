@@ -12,6 +12,7 @@ type LevelResult = { level: Level; passed: boolean; score: number; evidence: str
 type CriterionResult = { criterion: Criterion; score: number; passed: boolean; nodes: Record<NodeId, LevelResult[]> };
 
 export type AuditReport = {
+  executionMode: "deterministic-local";
   payloadHash: string;
   globalScore: number;
   status: "approved" | "rejected";
@@ -57,6 +58,7 @@ export function evaluateAudit(input: { name: string; description: string; code: 
   const globalScore = Math.round(criteria.reduce((sum, item) => sum + item.score, 0) / CRITERIA.length);
   const approverNodes = allPassed ? [...NODES] : [];
   return {
+    executionMode: "deterministic-local",
     payloadHash,
     globalScore,
     status: allPassed ? "approved" : "rejected",

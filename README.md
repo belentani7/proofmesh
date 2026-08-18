@@ -20,6 +20,8 @@ Nombre + descripción + diff/código + criterios
 
 El backend utiliza React 19, TypeScript, tRPC, Express, Drizzle y MySQL/TiDB. La interfaz pública presenta el método, el formulario de envío y el historial autenticado. Los informes guardan el hash del payload, evidencia textual por nivel, estado de cada nodo, puntuación global y motivo de rechazo.
 
+**Alcance honesto del MVP:** `node-a`, `node-b` y `node-c` son validadores deterministas ejecutados dentro del mismo proceso. El informe lo declara como `executionMode: "deterministic-local"`; todavía no representa consenso de red, firmas criptográficas ni tres servicios aislados. Esa ampliación debe implementarse antes de tratar el resultado como atestación distribuida.
+
 ## Inicio local
 
 ```bash

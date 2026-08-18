@@ -17,3 +17,6 @@
 - [ ] Verificar que el flujo de GitHub y la automatización solicitada existen realmente.
 - [ ] Corregir todos los fallos confirmados y añadir pruebas de regresión.
 - [ ] Revalidar la aplicación y publicar una corrección solo después de las pruebas.
+- [ ] Corregir el CI publicado que falló por conflicto de versiones de pnpm.
+- [ ] Dejar explícita la diferencia entre validadores deterministas locales y nodos independientes reales.
+- [ ] Añadir un gate de Pull Request que ejecute la auditoría de ProofMesh de forma reproducible.
