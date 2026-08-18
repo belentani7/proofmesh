@@ -12,11 +12,14 @@
 - [x] Verificación visual responsive del panel y landing.
 - [x] README, licencia MIT, CI y release inicial para GitHub.
 
-- [ ] Auditar críticamente la implementación publicada frente a los requisitos originales.
-- [ ] Verificar que la puntuación representa evidencia real y no heurísticas engañosas.
-- [ ] Verificar que el flujo de GitHub y la automatización solicitada existen realmente.
-- [ ] Corregir todos los fallos confirmados y añadir pruebas de regresión.
-- [ ] Revalidar la aplicación y publicar una corrección solo después de las pruebas.
-- [ ] Corregir el CI publicado que falló por conflicto de versiones de pnpm.
-- [ ] Dejar explícita la diferencia entre validadores deterministas locales y nodos independientes reales.
-- [ ] Añadir un gate de Pull Request que ejecute la auditoría de ProofMesh de forma reproducible.
+- [x] Auditar críticamente la implementación publicada frente a los requisitos originales.
+- [x] Verificar que la puntuación representa evidencia real y no heurísticas engañosas.
+- [x] Verificar que el flujo de GitHub y la automatización solicitada existen realmente.
+- [x] Corregir todos los fallos confirmados y añadir pruebas de regresión.
+- [x] Revalidar la aplicación y publicar una corrección solo después de las pruebas.
+- [x] Corregir el CI publicado que falló por conflicto de versiones de pnpm.
+- [x] Dejar explícita la diferencia entre validadores deterministas locales y nodos independientes reales.
+- [x] Añadir un gate de Pull Request que ejecute la auditoría de ProofMesh de forma reproducible.
+- [x] Añadir regresión de `executionMode: deterministic-local`.
+- [x] Añadir pruebas del gate de Pull Request con diff aprobado y rechazado.
+- [x] Añadir comprobación automática de consistencia de workflows para evitar otro conflicto de pnpm.
