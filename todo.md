@@ -10,4 +10,4 @@
 - [x] Landing pública e identidad visual distintiva de ProofMesh.
 - [x] Pruebas Vitest del motor, router API y casos de aprobación/rechazo 10/10.
 - [x] Verificación visual responsive del panel y landing.
-- [ ] README, licencia MIT, CI y release inicial para GitHub.
+- [x] README, licencia MIT, CI y release inicial para GitHub.
