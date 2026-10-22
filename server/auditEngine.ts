@@ -33,12 +33,14 @@ function nodeLevelCheck(node: NodeId, level: Level, criterion: Criterion, input:
   const code = input.code.trim();
   const description = input.description.trim();
   const criterionMentioned = new RegExp(`\\b${criterion}\\b`, "i").test(`${description} ${code}`);
+  const selected = new Set(input.selectedCriteria);
+  const hasAllCriteria = selected.size === CRITERIA.length && CRITERIA.every(item => selected.has(item));
   if (level === "integrity") {
     const passed = node === "node-a" ? input.name.trim().length >= 2 && payloadHash.length === 64 : node === "node-b" ? code.length > 0 && code.length <= 500000 : code.split("\n").length <= 5000;
     return result(level, passed, passed ? `${node} confirmó integridad: payload hash ${payloadHash.slice(0, 16)}…` : `${node} rechazó integridad: contenido, hash o volumen inválido`);
   }
   if (level === "policy") {
-    const passed = node === "node-a" ? input.selectedCriteria.length === CRITERIA.length : node === "node-b" ? description.length >= 80 : criterionMentioned;
+    const passed = node === "node-a" ? hasAllCriteria : node === "node-b" ? description.length >= 80 : criterionMentioned;
     return result(level, passed, passed ? `${node} confirmó política para ${criterion}` : `${node} rechazó política para ${criterion}: falta cobertura explícita`);
   }
   const safe = !blockedPatterns.test(input.code);
