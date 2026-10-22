@@ -44,3 +44,16 @@ it("approves only a fully evidenced change at 10/10", () => {
   expect(report.criteria.every(item => item.passed && item.score === 10)).toBe(true);
   expect(report.criteria.every(item => Object.values(item.nodes).every(levels => levels.every(level => level.passed && level.score === 10)))).toBe(true);
 });
+
+
+it("rejects duplicated criteria even when six selections are supplied", () => {
+  const report = evaluateAudit({
+    name: "Backend frontend utility relevance potential identity release",
+    description: "A long release with explicit backend frontend utility relevance potential identity coverage, security impact and risk controls. ".repeat(8),
+    code: ("backend frontend utility relevance potential identity ").repeat(80),
+    selectedCriteria: ["backend", "backend", "backend", "backend", "backend", "backend"],
+  });
+  expect(report.status).toBe("rejected");
+  expect(report.approverNodes).toEqual([]);
+  expect(report.criteria.every(item => item.nodes["node-a"].find(level => level.level === "policy")?.passed === false)).toBe(true);
+});
