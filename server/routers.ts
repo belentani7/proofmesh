@@ -27,7 +27,10 @@ export const appRouter = router({
       name: z.string().trim().min(2).max(160),
       description: z.string().trim().min(10).max(4000),
       code: z.string().min(1).max(500000),
-      selectedCriteria: z.array(z.enum(CRITERIA)).min(1),
+      selectedCriteria: z.array(z.enum(CRITERIA)).min(1).refine(
+        values => new Set(values).size === values.length,
+        { message: "Each audit criterion may only appear once" },
+      ),
     })).mutation(async ({ ctx, input }) => {
       const report = evaluateAudit(input);
       const id = await createAudit({
