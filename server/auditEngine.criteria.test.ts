@@ -28,4 +28,18 @@ describe("audit criteria selection", () => {
       expect(criterion.nodes["node-a"].find(check => check.level === "policy")?.passed).toBe(true);
     }
   });
+  it("rejects a seventh duplicate even when all six distinct criteria are present", () => {
+    const report = evaluateAudit({
+      name: "Complete release",
+      description,
+      code: ("backend frontend utility relevance potential identity ").repeat(80),
+      selectedCriteria: [...CRITERIA, "backend"],
+    });
+    expect(report.status).toBe("rejected");
+    expect(report.approverNodes).toEqual([]);
+    for (const criterion of report.criteria) {
+      expect(criterion.nodes["node-a"].find(check => check.level === "policy")?.passed).toBe(false);
+    }
+  });
+
 });
