@@ -21,7 +21,7 @@ describe("evaluateAudit", () => {
       description: "A detailed change with evidence for backend frontend utility relevance potential and identity criteria. ".repeat(8),
       code: ("backend frontend utility relevance potential identity ").repeat(80),
       selectedCriteria: [...CRITERIA],
-    } as const;
+    } satisfies Parameters<typeof evaluateAudit>[0];
     const first = evaluateAudit(input);
     const second = evaluateAudit(input);
     expect(first.payloadHash).toBe(second.payloadHash);
