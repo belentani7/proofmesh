@@ -2,11 +2,20 @@ import { execFileSync } from "node:child_process";
 import { CRITERIA, evaluateAudit } from "../server/auditEngine.ts";
 
 export function buildReport(diff, sha = "local") {
+  // Only additions can provide positive evidence. Removed lines and diff headers
+  // must not make an otherwise unrelated change appear to cover all six criteria.
+  const additions = diff.split(/\r?\n/)
+    .filter(line => line.startsWith("+") && !line.startsWith("+++"))
+    .map(line => line.slice(1))
+    .join("\n");
+  const selectedCriteria = CRITERIA.filter(criterion =>
+    new RegExp(`\\b${criterion}\\b`, "i").test(additions),
+  );
   return evaluateAudit({
     name: `Pull request audit ${sha}`,
-    description: "integrity policy risk backend frontend utility relevance potential identity security impact controls. ".repeat(8),
+    description: additions.slice(0, 4000),
     code: diff,
-    selectedCriteria: [...CRITERIA],
+    selectedCriteria,
   });
 }
 

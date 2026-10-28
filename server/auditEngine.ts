@@ -38,7 +38,7 @@ function nodeLevelCheck(node: NodeId, level: Level, criterion: Criterion, input:
     return result(level, passed, passed ? `${node} confirmó integridad: payload hash ${payloadHash.slice(0, 16)}…` : `${node} rechazó integridad: contenido, hash o volumen inválido`);
   }
   if (level === "policy") {
-    const passed = node === "node-a" ? input.selectedCriteria.length === CRITERIA.length : node === "node-b" ? description.length >= 80 : criterionMentioned;
+    const passed = node === "node-a" ? input.selectedCriteria.length === CRITERIA.length && new Set(input.selectedCriteria).size === CRITERIA.length && CRITERIA.every(item => input.selectedCriteria.includes(item)) : node === "node-b" ? description.length >= 80 : criterionMentioned;
     return result(level, passed, passed ? `${node} confirmó política para ${criterion}` : `${node} rechazó política para ${criterion}: falta cobertura explícita`);
   }
   const safe = !blockedPatterns.test(input.code);
